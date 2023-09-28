@@ -69,45 +69,70 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 
 
 ### QUERY:
-
+```sql
+CREATE VIEW details AS SELECT ENAME FROM EMP WHERE SALARY >(select SALARY from EMP where EMPNO=7566);
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/1429b0c0-fe4d-4646-8942-f1699909f82a)
+
 
 ### Q2) List the ename,job,sal of the employee who get minimum salary in the company.
 
 ### QUERY:
-
+```sql
+ CREATE VIEW minimum AS select ENAME,JOB,SALARY from EMP where SALARY =(select MIN(SALARY) from EMP);
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/8e6dfab4-15f1-4a90-b8fc-ee856156abeb)
+
 
 ### Q3) List ename, job of the employees who work in deptno 10 and his/her job is any one of the job in the department ‘SALES’.
 
 ### QUERY:
-
+```sql
+select ENAME,JOB from EMP where  DEPTNO=10 AND JOB='SALESMAN';
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/4b785dea-cae3-4ad2-86e1-34d531d10c43)
 
 
 ### Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
 
 ### QUERY:
-
+```sql
+create view empv5 as select EMPNO,ENAME,JOB from EMP where DEPTNO=10;
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/eea92839-6db7-4fe2-8805-80354b7e59eb)
+
 
 ### Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
 
 ### QUERY:
-
+```sql
+create view empv30 AS select EMPNO,ENAME,SALARY from EMP where DEPTNO=30;
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/fdb11a00-aeac-4983-a71a-162611b31681)
+
 
 ### Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
 
 ### QUERY:
+```sql
+update EMP set SALARY=SALARY*1.1 WHERE JOB='clerk';
 
+create view empv5 as select EMPNO,ENAME,SALARY,JOB from EMP;
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/ed2b2239-d2fa-407b-9368-957b935c0392)
+
 
 ## Create a Customer1 Table
 ```sql
@@ -140,28 +165,49 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson
 ### Q7) Write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
 
 ### QUERY:
-
+```sql
+select s.name,c.cust_name,s.city from salesman1 as s ,customer1 as c where s.city=c.city;
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/846cbae8-409e-446e-a76e-f84d761f735a)
+
 
 ### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
 
 
 ### QUERY:
-
+```sql
+select s.name,c.cust_name,c.city,s.commission from salesman1 as s inner join customer1 as c on s.city=c.city where s.commission>0.13;
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/bae7ce02-6e47-42da-9a78-c53b075f65b3)
+
 
 ### Q9) Perform Natural join on both tables
 
 ### QUERY:
-
+```sql
+select s.name,c.cust_name,c.city,s.commission from salesman1 as s natural join customer1 as c where s.commission>0.13;
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/a272464b-ad53-4fd2-ae00-8ac89a847b26)
+
 
 ### Q10) Perform Left and right join on both tables
 
 ### QUERY:
+```sql
+select s.name,c.cust_name,c.city,s.commission from salesman1 as s left join customer1 as c on s.salesman_id=c.salesman_id where s.commission>0.13;
 
+select s.name,c.cust_name,c.city,s.commission from salesman1 as s right join customer1 as c on s.salesman_id=c.salesman_id where s.commission>0.13;
+```
 
 ### OUTPUT:
+![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/d4d61b35-d66c-4d56-862c-b0576ebdf5c4)
+
+# RESULT:
+Hence successfully created a manager database and execute DML queries using SQL.
+
