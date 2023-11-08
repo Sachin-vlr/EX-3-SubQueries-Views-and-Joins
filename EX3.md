@@ -1,6 +1,5 @@
 # EX 3 SubQueries, Views and Joins 
 ## DATE:
-
 ## Create employee Table
 ```sql
 CREATE TABLE EMP (EMPNO NUMBER(4) PRIMARY KEY,ENAME VARCHAR2(10),JOB VARCHAR2(9),MGR NUMBER(4),HIREDATE DATE,SAL NUMBER(7,2),COMM NUMBER(7,2),DEPTNO NUMBER(2));
@@ -49,7 +48,6 @@ VALUES (7902, 'FORD', 'ANALYST', 7566, TO_DATE('03-DEC-81', 'DD-MON-RR'), 3000, 
 INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
 VALUES (7934, 'MILLER', 'CLERK', 7782, TO_DATE('23-JAN-82', 'DD-MON-RR'), 1300, 10, 10);
 ```
-
 ## Create department table
 ```sql
 CREATE TABLE DEPT (DEPTNO NUMBER(2) PRIMARY KEY,DNAME VARCHAR2(14),LOC VARCHAR2(13));
@@ -64,9 +62,7 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (30, 'SALES', 'CHICAGO');
 
 INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 ```
-
 ### Q1) List the name of the employees whose salary is greater than that of employee with empno 7566.
-
 
 ### QUERY:
 ```sql
@@ -75,7 +71,6 @@ CREATE VIEW details AS SELECT ENAME FROM EMP WHERE SALARY >(select SALARY from E
 
 ### OUTPUT:
 ![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/1429b0c0-fe4d-4646-8942-f1699909f82a)
-
 
 ### Q2) List the ename,job,sal of the employee who get minimum salary in the company.
 
@@ -98,17 +93,14 @@ select ENAME,JOB from EMP where  DEPTNO=10 AND JOB='SALESMAN';
 ### OUTPUT:
 ![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/4b785dea-cae3-4ad2-86e1-34d531d10c43)
 
-
 ### Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
 
 ### QUERY:
 ```sql
 create view empv5 as select EMPNO,ENAME,JOB from EMP where DEPTNO=10;
 ```
-
 ### OUTPUT:
 ![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/eea92839-6db7-4fe2-8805-80354b7e59eb)
-
 
 ### Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
 
@@ -116,10 +108,8 @@ create view empv5 as select EMPNO,ENAME,JOB from EMP where DEPTNO=10;
 ```sql
 create view empv30 AS select EMPNO,ENAME,SALARY from EMP where DEPTNO=30;
 ```
-
 ### OUTPUT:
 ![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/fdb11a00-aeac-4983-a71a-162611b31681)
-
 
 ### Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
 
@@ -129,10 +119,8 @@ update EMP set SALARY=SALARY*1.1 WHERE JOB='clerk';
 
 create view empv5 as select EMPNO,ENAME,SALARY,JOB from EMP;
 ```
-
 ### OUTPUT:
 ![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/ed2b2239-d2fa-407b-9368-957b935c0392)
-
 
 ## Create a Customer1 Table
 ```sql
@@ -168,13 +156,10 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson
 ```sql
 select s.name,c.cust_name,s.city from salesman1 as s ,customer1 as c where s.city=c.city;
 ```
-
 ### OUTPUT:
 ![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/846cbae8-409e-446e-a76e-f84d761f735a)
 
-
 ### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
-
 
 ### QUERY:
 ```sql
@@ -195,7 +180,6 @@ select s.name,c.cust_name,c.city,s.commission from salesman1 as s natural join c
 ### OUTPUT:
 ![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/a272464b-ad53-4fd2-ae00-8ac89a847b26)
 
-
 ### Q10) Perform Left and right join on both tables
 
 ### QUERY:
@@ -204,10 +188,7 @@ select s.name,c.cust_name,c.city,s.commission from salesman1 as s left join cust
 
 select s.name,c.cust_name,c.city,s.commission from salesman1 as s right join customer1 as c on s.salesman_id=c.salesman_id where s.commission>0.13;
 ```
-
 ### OUTPUT:
 ![image](https://github.com/Sachin-vlr/EX-3-SubQueries-Views-and-Joins/assets/113497666/d4d61b35-d66c-4d56-862c-b0576ebdf5c4)
-
 # RESULT:
 Hence successfully created a manager database and execute DML queries using SQL.
-
